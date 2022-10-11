@@ -67,6 +67,12 @@ const maleIk = Isikukood.generate({
     <td>string</td>
   </tr>
   <tr>
+    <td>generatePersonalCodes()</td>
+    <td>Static function generates unique personal IDs and exports them in csv.</td>
+    <td>Number required</td>
+    <td>Nested array with generated codes</td>
+  </tr>
+  <tr>
     <td>getGender()</td>
     <td>Get the gender of a person.</td>
     <td>-</td>

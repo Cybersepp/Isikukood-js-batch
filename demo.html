@@ -28,6 +28,10 @@
   <input type="text" name="personal-id" id="personal-id" placeholder="Your Estonian personal ID" maxlength="11">
   <button type="submit" class="minimal">Validate</button> <button id="generate" class="minimal">Generate</button>
   <br>
+  <br>
+  <input type="number" name="generate-amount" id="generate-amount" placeholder="Amount to generate" maxlength="20">
+  <button type="submit" class="minimal" id="download">Download</button>
+  <br>
   <output id="result" class="invalid"></output>
 </form>
 
@@ -36,9 +40,10 @@
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('form-personal-id');
     const personalIdInput = document.getElementById('personal-id');
+    const generateAmountInput = document.getElementById('generate-amount');
     const resultElem = document.getElementById('result');
     const generateBtn = document.getElementById('generate');
-
+    const generateAmountBtn = document.getElementById('download')
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -56,6 +61,11 @@
       event.preventDefault();
       personalIdInput.value = Isikukood.generate();
     });
+
+    generateAmountBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      Isikukood.generatePersonalCodes(generateAmountInput.value)
+    })
   });
 </script>
 </body>

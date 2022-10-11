@@ -195,6 +195,23 @@ var ik = (() => {
       personalId += this.prototype.getControlNumber(personalId);
       return personalId;
     }
+    static generatePersonalCodes(amountOfCodes) {
+      let rows = [];
+      for (let i = 0; i < amountOfCodes; i++) {
+        const generatedPersonalCode = Isikukood.generate();
+        if (!rows.includes(generatedPersonalCode))
+          rows.push([generatedPersonalCode]);
+        else
+          i--;
+      }
+      let csvContent = "data:text/csv;charset=utf-8," + rows.map((e) => e.join(",")).join("\n");
+      var encodedUri = encodeURI(csvContent);
+      var link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "generated_personal_codes.csv");
+      document.body.appendChild(link);
+      link.click();
+    }
   }
   return __toCommonJS(isikukood_exports);
 })();
